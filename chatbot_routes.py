@@ -5,6 +5,11 @@ import datetime
 
 chatbot_bp = Blueprint('chatbot', __name__)
 
+chat_sessions = {}
+def generate_auto_session_name():
+    count = len(chat_sessions) + 1
+    return f"Session {count}"
+
 @chatbot_bp.route('/create_session', methods=['POST'])
 def create_session():
     try:
@@ -57,4 +62,5 @@ def get_messages():
         messages = ref.get() or {}
         return jsonify(messages), 200
     except Exception as e:
+
         return jsonify({"error" : str(e)}),500
