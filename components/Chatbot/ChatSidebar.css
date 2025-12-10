@@ -1,0 +1,166 @@
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.sidebar-logo {
+  width: 120px;        /* adjust size */
+  height: auto;        /* keeps aspect ratio */
+}
+
+.sidebar-container.collapsed .sidebar-logo {
+  width: 40px;         /* smaller when collapsed */
+}
+
+.collapse-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+}
+.collapse-btn:hover {
+  color: #007bff;
+}
+.new-chat-container {
+  padding: 10px 16px;
+}
+
+.new-chat-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #4a90e2; /* blue button */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.new-chat-btn:hover {
+  background-color: #357ab8; /* darker blue on hover */
+}
+
+.sidebar-container.collapsed .new-chat-btn {
+  display: none; /* hide button when sidebar collapsed */
+}
+
+.session-list {
+  flex: 1; /* takes remaining space */
+  overflow-y: auto; /* scroll if too many sessions */
+  padding: 10px 0;
+}
+
+.session-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 4px 8px;
+  transition: background-color 0.2s ease;
+}
+
+.session-item:hover {
+  background-color: #e0e0e0;
+}
+
+.session-item.active {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
+.no-sessions {
+  padding: 10px 16px;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Base sidebar styling (uncollapsed by default) */
+.sidebar {
+  width: 250px;              /* full width when expanded */
+  background-color: #f0f0f0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease; /* smooth transition when resizing */
+  overflow: hidden;            /* hides overflow content during collapse */
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+  width: 60px; /* smaller width when collapsed */
+}
+
+/* Header logo resizing */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.sidebar-logo {
+  width: 120px;             /* normal size */
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-logo {
+  width: 40px;              /* smaller logo when collapsed */
+}
+
+/* New Chat button */
+.new-chat-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar.collapsed .new-chat-btn {
+  display: none; /* hide button when collapsed */
+}
+
+/* Session list */
+.session-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.session-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 4px 8px;
+  transition: background-color 0.2s ease, opacity 0.3s ease;
+}
+
+.session-item:hover {
+  background-color: #e0e0e0;
+}
+
+.session-item.active {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
+/* Hide session items when collapsed */
+.sidebar.collapsed .session-item {
+  display: none;
+}
+
+/* Collapse button */
+.collapse-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}

@@ -1,0 +1,62 @@
+.chat-header {
+  height: 65px;
+  background: #ffffff;
+  border-bottom: 1px solid #e7e7e7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+
+  position: relative;
+  z-index: 10;
+
+  /* modern clean UI */
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+}
+
+.chat-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2b2b2b;
+}
+
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-icon-btn {
+  background: #f0f0f0;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.header-icon-btn:hover {
+  background: #e4e4e4;
+}
+
+.header-icon-btn:active {
+  transform: scale(0.95);
+}
+
+.header-icon-btn.delete {
+  background: #ffe5e5;
+}
+
+.header-icon-btn.delete:hover {
+  background: #ffcccc;
+}
+
+.header-icon-btn.delete svg {
+  color: #d9534f; /* red for delete */
+}
