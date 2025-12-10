@@ -57,3 +57,4 @@ ChatSidebar.propTypes = {
   onToggleCollapse: propTypes.func.isRequired,
 };
 export default ChatSidebar;
+
