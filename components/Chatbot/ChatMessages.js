@@ -1,68 +1,53 @@
-import React, { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import "./ChatMessages.css";
-import BotAvatar from "../../assets/bot_avatar.png";
-import UserAvatar from "../../assets/user_avatar.png";
+import userAvatar from "../../assets/user_avatar.png";
+import botAvatar from "../../assets/bot_avatar.png";
 
-const ChatMessages = ({ activeSessionId, messages }) => {
-  const messagesEndRef = useRef(null);
-
-  // Auto-scroll to bottom
-  useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages, activeSessionId]);
-
-  if (!activeSessionId) {
-    return (
-      <div className="chat-messages empty">
-        <p>Please select or create a chat session.</p>
-      </div>
-    );
-  }
-
-  const sessionMessages = messages[activeSessionId] || [];
-
+const ChatMessages = ({ messages = [], isBotTyping }) => {
   return (
-    <div className="chat-messages">
-      {sessionMessages.length === 0 ? (
-        <p className="no-messages">No messages yet. Say something!</p>
-      ) : (
-        sessionMessages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`message-row ${msg.sender === "user" ? "user" : "bot"}`}
-          >
-            {/* Avatar */}
-            <img
-              src={msg.sender === "user" ? UserAvatar : BotAvatar}
-              alt="avatar"
-              className="avatar"
-            />
+    <div className="messages-container">
+      {messages.map((msg, index) => (
+        <div
+          key={index}
+          className={`message-item ${
+            msg.sender === "user" ? "user-message" : "bot-message"
+          }`}
+        >
+          <img
+            src={msg.sender === "user" ? userAvatar : botAvatar}
+            className="message-avatar"
+            alt="avatar"
+          />
 
-            {/* Bubble + timestamp */}
-            <div className="bubble-container">
-              <div className={`message-bubble ${msg.sender}`}>
-                {msg.text}
-              </div>
-              <span className="timestamp">
-                {new Date(msg.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-              </span>
+          <div className="message-content">
+            <div className="message-text">{msg.text}</div>
+            <div className="message-timestamp">
+              {new Date(msg.timestamp).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
             </div>
           </div>
-        ))
-      )}
+        </div>
+      ))}
 
-      <div ref={messagesEndRef} />
+      {/* Typing indicator */}
+      {isBotTyping && (
+        <div className="message-item bot-message typing-indicator">
+          <img src={botAvatar} className="message-avatar" alt="avatar" />
+          <div className="message-content">
+            <div className="message-text">
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-ChatMessages.propTypes = {
-  activeSessionId: PropTypes.number,
-  messages: PropTypes.object.isRequired
-};
-
 export default ChatMessages;
+
 
