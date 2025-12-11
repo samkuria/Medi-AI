@@ -7,7 +7,7 @@ import './Chatbot.css';
 import axios from 'axios';
 import { set } from 'date-fns';
 
-const USER_ID = "anonymous"; // You can replace with a real user system later
+const USER_ID = "anonymous"; 
 
 
 const Chatbot = () => {
@@ -217,4 +217,5 @@ const Chatbot = () => {
                         </div>
                     )}
                 </div>
+
 
