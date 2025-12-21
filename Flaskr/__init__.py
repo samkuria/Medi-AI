@@ -22,9 +22,12 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!' """
     
-    from . import auth, db
+    # Register Blueprints
+    from . import auth, db, profiles
 
     app.register_blueprint(auth.bp)
+    app.register_blueprint(profiles.bp)
     db.init_app(app)
+    app.add_url_rule("/", endpoint="index")
     
     return app

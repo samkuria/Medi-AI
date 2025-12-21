@@ -1,19 +1,11 @@
-from flask import Flask
-from flask import request
+from flask import (
+    flash, Blueprint, request, url_for, render_template, redirect
+                   )
+from werkzeug.exceptions import abort
+from Flaskr.auth import login_required
+from Flaskr.db import get_db
 
-app = Flask(__name__)
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        # Here you would add logic to verify username and password
-        return f"Logged in as: {username}"
-    return '''
-        <form method="post">
-            Username: <input type="text" name="username"><br>
-            Password: <input type="password" name="password"><br>
-            <input type="submit" value="Login">
-        </form>
-    '''
+bp = Blueprint("profiles", __name__)
+
+
