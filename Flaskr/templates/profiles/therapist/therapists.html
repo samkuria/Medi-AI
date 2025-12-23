@@ -1,0 +1,20 @@
+{% extends base.html %}
+
+{% block header %}
+    <h1>{% block title %}Therapists{% endblock %}</h1>
+    {% if g.user %}
+        <a href="{{ url_for('profiles.new_therapist') }}">Register as a therapist</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% for therapist in therapists %}
+        <div>
+            <div>
+                <h2>{{ therapist.name }}</h2>
+                <p>Clinical</p>
+            </div>
+            <p><span>Charges</span></p>
+        </div>
+    {% endfor %}
+{% endblock %}
