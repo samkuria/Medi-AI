@@ -1,3 +1,6 @@
+/* -----------------------------
+   Base Chat Input Styling
+------------------------------ */
 .chat-input-container {
   display: flex;
   align-items: center;
@@ -15,7 +18,7 @@
   font-size: 15px;
   outline: none;
   margin-right: 10px;
-  transition: border 0.2s;
+  transition: border 0.2s, font-size 0.2s, padding 0.2s;
 }
 
 .chat-input-field:focus {
@@ -32,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: background 0.2s ease, transform 0.1s ease, padding 0.2s;
 }
 
 .send-btn:hover {
@@ -45,4 +48,73 @@
 
 .send-btn svg {
   font-size: 16px;
+  transition: font-size 0.2s;
 }
+
+/* -----------------------------
+   Responsive Styles
+------------------------------ */
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .chat-input-container {
+    padding: 8px 10px;
+  }
+
+  .chat-input-field {
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+  .send-btn {
+    padding: 8px 12px;
+  }
+
+  .send-btn svg {
+    font-size: 14px;
+  }
+}
+
+/* Tablet (max-width: 1024px) and above mobile */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .chat-input-container {
+    padding: 9px 12px;
+  }
+
+  .chat-input-field {
+    padding: 9px 13px;
+    font-size: 14.5px;
+    margin-right: 9px;
+  }
+
+  .send-btn {
+    padding: 9px 13px;
+  }
+
+  .send-btn svg {
+    font-size: 15px;
+  }
+}
+
+/* Desktop (min-width: 1025px) */
+@media (min-width: 1025px) {
+  .chat-input-container {
+    padding: 10px 15px;
+  }
+
+  .chat-input-field {
+    padding: 10px 15px;
+    font-size: 15px;
+    margin-right: 10px;
+  }
+
+  .send-btn {
+    padding: 10px 14px;
+  }
+
+  .send-btn svg {
+    font-size: 16px;
+  }
+}
+
