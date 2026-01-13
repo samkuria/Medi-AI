@@ -1,29 +1,59 @@
+/* -----------------------------
+   Base Sidebar Styling
+------------------------------ */
+.sidebar {
+  width: 250px;              /* default expanded width */
+  background-color: #f0f0f0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  position: relative;        /* for mobile overlay handling */
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+  width: 60px;
+}
+
+/* -----------------------------
+   Sidebar Header
+------------------------------ */
 .sidebar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
+  padding: 10px 16px;
 }
 
 .sidebar-logo {
-  width: 120px;        /* adjust size */
-  height: auto;        /* keeps aspect ratio */
+  width: 120px;
+  height: auto;
+  transition: width 0.3s ease;
 }
 
-.sidebar-container.collapsed .sidebar-logo {
-  width: 40px;         /* smaller when collapsed */
+.sidebar.collapsed .sidebar-logo {
+  width: 40px;
 }
 
+/* Collapse button */
 .collapse-btn {
   background: none;
   border: none;
-  font-size: 18px;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
   padding: 4px;
 }
+
 .collapse-btn:hover {
   color: #007bff;
 }
+
+/* -----------------------------
+   New Chat Button
+------------------------------ */
 .new-chat-container {
   padding: 10px 16px;
 }
@@ -31,103 +61,26 @@
 .new-chat-btn {
   width: 100%;
   padding: 10px;
-  background-color: #4a90e2; /* blue button */
+  background-color: #4a90e2;
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
 .new-chat-btn:hover {
-  background-color: #357ab8; /* darker blue on hover */
-}
-
-.sidebar-container.collapsed .new-chat-btn {
-  display: none; /* hide button when sidebar collapsed */
-}
-
-.session-list {
-  flex: 1; /* takes remaining space */
-  overflow-y: auto; /* scroll if too many sessions */
-  padding: 10px 0;
-}
-
-.session-item {
-  padding: 10px 16px;
-  cursor: pointer;
-  border-radius: 6px;
-  margin: 4px 8px;
-  transition: background-color 0.2s ease;
-}
-
-.session-item:hover {
-  background-color: #e0e0e0;
-}
-
-.session-item.active {
-  background-color: #4a90e2;
-  color: #fff;
-}
-
-.no-sessions {
-  padding: 10px 16px;
-  color: #888;
-  font-size: 14px;
-}
-
-/* Base sidebar styling (uncollapsed by default) */
-.sidebar {
-  width: 250px;              /* full width when expanded */
-  background-color: #f0f0f0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  transition: width 0.3s ease; /* smooth transition when resizing */
-  overflow: hidden;            /* hides overflow content during collapse */
-}
-
-/* Collapsed sidebar */
-.sidebar.collapsed {
-  width: 60px; /* smaller width when collapsed */
-}
-
-/* Header logo resizing */
-.sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-}
-
-.sidebar-logo {
-  width: 120px;             /* normal size */
-  transition: width 0.3s ease;
-}
-
-.sidebar.collapsed .sidebar-logo {
-  width: 40px;              /* smaller logo when collapsed */
-}
-
-/* New Chat button */
-.new-chat-btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #4a90e2;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: opacity 0.2s ease;
+  background-color: #357ab8;
 }
 
 .sidebar.collapsed .new-chat-btn {
-  display: none; /* hide button when collapsed */
+  display: none;
 }
 
-/* Session list */
+/* -----------------------------
+   Session List
+------------------------------ */
 .session-list {
   flex: 1;
   overflow-y: auto;
@@ -151,18 +104,93 @@
   color: #fff;
 }
 
-/* Hide session items when collapsed */
 .sidebar.collapsed .session-item {
   display: none;
 }
 
-/* Collapse button */
-.collapse-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
+.no-sessions {
+  padding: 10px 16px;
+  color: #888;
+  font-size: 14px;
 }
+
+/* -----------------------------
+   Responsive Styles
+------------------------------ */
+
+/* Small devices (mobile) */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    left: -250px;
+    top: 0;
+    height: 100%;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    width: 250px;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.active {
+    left: 0;  /* slide in */
+  }
+
+  .sidebar.collapsed {
+    width: 250px; /* ignore collapse on mobile, handled via slide */
+  }
+
+  .collapse-btn {
+    display: none; /* hide collapse button on mobile */
+  }
+}
+
+/* Medium devices (tablet) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .sidebar.collapsed {
+    width: 60px;
+  }
+
+  .sidebar-logo {
+    width: 100px;
+  }
+
+  .sidebar.collapsed .sidebar-logo {
+    width: 40px;
+  }
+
+  .new-chat-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .session-item {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* Large devices (desktop) */
+@media (min-width: 1025px) {
+  .sidebar {
+    width: 250px;
+  }
+
+  .sidebar.collapsed {
+    width: 60px;
+  }
+
+  .sidebar-logo {
+    width: 120px;
+  }
+
+  .sidebar.collapsed .sidebar-logo {
+    width: 40px;
+  }
+}
+
 
 
